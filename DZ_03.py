@@ -34,14 +34,25 @@ while numbers != palindrom_from_number:  # условие :Если переве
         
         print(palindrom_from_number,"число не Палиндром")
         i =0
+        str_numbers = ""
+        str_palindrom = ""
+
+        for i in palindrom_from_number:
+            str_palindrom += str(i)+ " " 
+        str_palindrom = str_palindrom.replace(' ', '')
+        str_palindrom= int(str_palindrom)
+
+        for i in numbers:
+            str_numbers += str(i)+ " " 
+        str_numbers = str_numbers.replace(' ', '')
+        str_numbers = int(str_numbers)
+
         number = []
-        while i < size_number:
-            sum_numbers = numbers[i] + palindrom_from_number[i]
-            number.append(sum_numbers)
-            i = i +1
+        sum = str_numbers + str_palindrom
+        while sum > 0:   #перевод числа в лист для сравнения
+            remainder = sum % 10
+            number.append(remainder)
+            sum = math.trunc(sum / 10)
+
         numbers = number
-
-
-
-
-
+  

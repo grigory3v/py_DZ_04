@@ -6,11 +6,13 @@
 
 
 import time
+
 ns = time.time_ns() // 10** 6
 sec = time.time() % (24 * 3600)
 random = ns - sec
 random = random % 10
 random= round(random, 1)
+
 random = random * 10
 random = int(random)
 print(random)

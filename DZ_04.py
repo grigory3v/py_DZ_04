@@ -1,18 +1,39 @@
-# 4 - Реализуйте выдачу случайного числа
-# не использовать random.randint и вообще библиотеку random
-# Можете использовать xor, биты, библиотеку time
-# или datetime (миллисекунды или наносекунды) - для задания случайности
-# Учтите, что есть диапазон: от(минимальное) и до (максимальное)
+# 4- Напишите программу,
+# которая будет преобразовывать десятичное число в двоичное.
+# Подумайте, как это можно решить с помощью рекурсии.
+
+# Пример:
+
+# 45 -> 101101
+# 3 -> 11
+# 2 -> 10
 
 
-import time
+def Number_conversion(numbers):
+    string = ""
+    while numbers/2 != 0:
+        string = str(numbers % 2) + string
+        numbers //= 2
+    return string
 
-ns = time.time_ns() // 10** 6
-sec = time.time() % (24 * 3600)
-random = ns - sec
-random = random % 10
-random= round(random, 1)
 
-random = random * 10
-random = int(random)
-print(random)
+def Number_conversion_recurs(numbers):
+    string = ""
+    if numbers >= 2:
+        Number_conversion_recurs(numbers // 2)
+    print(numbers % 2, end='')
+    
+ 
+ 
+
+ 
+ 
+
+
+    
+
+print("Введите десятичное число :")
+number = int(input())
+
+print("Двоичное число = ", Number_conversion(number))
+Number_conversion_recurs(number)

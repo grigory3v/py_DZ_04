@@ -1,58 +1,34 @@
-# 3 - Палиндромом называется слово, которое в обе стороны читается одинаково: "шалаш", "кабак".
-# А еще есть палиндром числа - смысл также в том, чтобы число в обе стороны читалось одинаково, но есть одно "но".
-# Если перевернутое число не равно исходному, то они складываются и проверяются на палиндром еще раз.
-# Это происходит до тех пор, пока не будет найден палиндром.
-# Напишите такую программу, которая найдет палиндром введенного пользователем числа.
+# 3-Задайте список из вещественных чисел.
+#  Напишите программу, которая найдёт разницу между максимальным
+#   и минимальным значением дробной части элементов.
+
+# Пример:
+
+# [1.1, 1.2, 3.1, 5.17, 10.02] => 0.18 или 18
+# [4.07, 5.1, 8.2444, 6.98] - 0.91 или 91
+
+list_1 = [1.1, 1.2, 3.1, 5.17, 10.02]
+list_2 = [4.07, 5.1, 8.2444, 6.98]
 
 
-import math
+def List(incoming_list):
+    """Функция, которая найдёт разницу между максимальным 
+    и минимальным значением дробной части элементов списка."""
 
-print("Введите целое положительное число ")
-number = int(input())
-palindrom_from_number = 0
+    min_value_fractional_part_elements = incoming_list[0] % 1
+    max_value_fractional_part_elements = incoming_list[0] % 1
 
-numbers = []
-while number > 0:   #перевод числа в лист для сравнения
-    remainder = number % 10
-    numbers.append(remainder)
-    number = math.trunc(number / 10)
+    for i in range(1, len(incoming_list)):
 
-while numbers != palindrom_from_number:  # условие :Если перевернутое число не равно исходному, 
-                                         #то они складываются и проверяются на палиндром еще раз
-    
-    palindrom_from_number = []
-    size_number = len(numbers)
-    i = 1
+        if incoming_list[i] % 1 > max_value_fractional_part_elements:
+            max_value_fractional_part_elements = incoming_list[i] % 1
+        elif incoming_list[i] % 1 < min_value_fractional_part_elements:
+            min_value_fractional_part_elements = incoming_list[i] % 1
 
-    while i < size_number+1:
-        palindrom_from_number.append(numbers[size_number -i])
-        i = i + 1
-    if numbers == palindrom_from_number:
+    difference_between_elements = max_value_fractional_part_elements - \
+        min_value_fractional_part_elements
+    return round(difference_between_elements, 2)
 
-        print(palindrom_from_number, "число - Палиндром")
-    else:
-        
-        print(palindrom_from_number,"число не Палиндром")
-        i =0
-        str_numbers = ""
-        str_palindrom = ""
 
-        for i in palindrom_from_number:
-            str_palindrom += str(i)+ " " 
-        str_palindrom = str_palindrom.replace(' ', '')
-        str_palindrom= int(str_palindrom)
-
-        for i in numbers:
-            str_numbers += str(i)+ " " 
-        str_numbers = str_numbers.replace(' ', '')
-        str_numbers = int(str_numbers)
-
-        number = []
-        sum = str_numbers + str_palindrom
-        while sum > 0:   #перевод числа в лист для сравнения
-            remainder = sum % 10
-            number.append(remainder)
-            sum = math.trunc(sum / 10)
-
-        numbers = number
-  
+print('Разница между максимальным и минимальным значением дробной части элементов list_1 = ', List(list_1))
+print('Разница между максимальным и минимальным значением дробной части элементов list_2 = ', List(list_2))

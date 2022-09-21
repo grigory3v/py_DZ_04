@@ -1,25 +1,34 @@
-# 2 - Напишите программу, которая принимает на вход число N
-#  и выдает набор произведений (набор - это список) чисел от 1 до N.
-# Не используйте функцию math.factorial.
-# Добавьте проверку числа N: чтобы пользователь не мог ввести буквы.
+# 2-Напишите программу, которая найдёт произведение пар чисел списка.
+#  Парой считаем первый и последний элемент, второй и предпоследний и т.д.
 
 # Пример:
-# - пусть N = 4, тогда [ 1, 2, 6, 24 ] (1, 1*2, 1*2*3, 1*2*3*4)
 
-numbers = []
-print("Введите целое положительное число 'N'")
-number = (input())
-if number.isdigit() == True:
-    number = int(number)
-    if number < 0:
-        print('вы ввели отрицательное число')
-    else:
-        i = 1
-        factorial = 1
-        while i <= number:
-            factorial *= i
-            numbers.append(factorial)
-            i = i + 1
-        print("набор произведений чисел от 1 до N : ", numbers)
-else:
-    print('вы ввели не число')
+# [2, 3, 4, 5, 6] => [12, 15, 16];
+# [2, 3, 5, 6] => [12, 15]
+
+list = [2, 3, 4, 5, 6]
+list_2 = [2, 3, 5, 6]
+
+
+def List(incoming_list):
+    """Функция, которая найдёт произведение пар чисел списка.
+    
+    Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+    """
+
+    new_list = []
+    for i in range(0, len(incoming_list)//2):
+        new_list.append(incoming_list[i] *
+                        incoming_list[len(incoming_list) - i - 1])
+
+    if (len(incoming_list) % 2) != 0:
+        average_index = len(incoming_list)//2
+        new_list.append(incoming_list[average_index]
+                        * incoming_list[average_index])
+
+    return new_list
+
+
+print('Произведение пар чисел списка = ', List(list))
+
+print('Произведение пар чисел списка = ', List(list_2))

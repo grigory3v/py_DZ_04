@@ -1,28 +1,23 @@
-# 1 - Напишите программу, которая принимает на вход вещественное число и показывает сумму его цифр.
-# Учтите, что числа могут быть отрицательными
+# 1- Задайте список из нескольких чисел. Напишите программу,
+# которая найдёт сумму элементов списка, стоящих на нечётной позиции.
 
 # Пример:
-# 67.82 -> 23
-# 0.56 -> 11
 
-import math
+# [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12
 
-print("Введите вещественное число")
-number = float((input()))
 
-number_in_string = str(number)
-i = 0
-sum = 0
-size = len(number_in_string)
-while i < size:
-    if number_in_string[i] != '.':
-        if number_in_string[i] == '-':
-            index_number = int(number_in_string[i + 1])
-            index_number = index_number * (-1)
-            i += 1
-        else:
-            index_number = int(number_in_string[i])
-        sum = sum + index_number
-    i = i + 1
+list = [2, 3, 5, 9, 3]
 
-print("sum =", sum)
+
+def List(*sum):
+    """Функция, которая найдёт сумму элементов списка, 
+    стоящих на нечётной позиции."""
+    
+    sum = 0
+    for i in range(0, len(list)):
+        if i % 2 != 0:
+            sum = sum + list[i]
+    return sum
+
+
+print('Сумма элементов списка, стоящих на нечётной позиции = ', List(list))

@@ -1,34 +1,19 @@
-# 2-Напишите программу, которая найдёт произведение пар чисел списка.
-#  Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+# 2 - Задайте последовательность чисел.
+# Напишите программу, которая выведет список
+# неповторяющихся элементов исходной последовательности.
+# Не использовать множества.
+# [1,1,1,1,2,2,2,3,3,3,4] -> [1,2,3,4]
 
-# Пример:
-
-# [2, 3, 4, 5, 6] => [12, 15, 16];
-# [2, 3, 5, 6] => [12, 15]
-
-list = [2, 3, 4, 5, 6]
-list_2 = [2, 3, 5, 6]
+list = [1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 1]
 
 
-def List(incoming_list):
-    """Функция, которая найдёт произведение пар чисел списка.
-    
-    Парой считаем первый и последний элемент, второй и предпоследний и т.д.
-    """
-
-    new_list = []
-    for i in range(0, len(incoming_list)//2):
-        new_list.append(incoming_list[i] *
-                        incoming_list[len(incoming_list) - i - 1])
-
-    if (len(incoming_list) % 2) != 0:
-        average_index = len(incoming_list)//2
-        new_list.append(incoming_list[average_index]
-                        * incoming_list[average_index])
-
-    return new_list
+def List(list):
+    list_new = []
+    for i in list:
+        if i not in list_new:
+            list_new.append(i)
+    print(list)
+    print(list_new)
 
 
-print('Произведение пар чисел списка = ', List(list))
-
-print('Произведение пар чисел списка = ', List(list_2))
+List(list)

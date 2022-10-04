@@ -1,36 +1,49 @@
-# 5-Задайте число.
-# Составьте список чисел Фибоначчи,
-# в том числе для отрицательных индексов.
+# 5 - Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных. 
+# Входные и выходные данные хранятся в отдельных текстовых файлах.
+# файл первый:
+# AAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCDDDDDDEEEEEFFFFG python is sooooooo coooooool
+# файл второй:
+# сжатый текст.
 
-# Пример:
-# для k = 8 список будет выглядеть так:
-# [-21 ,-13, -8, 5, −3, -2, −1, -1, 0, 1, 1, 2, 3, 5, 8, 13, 21] Негафибоначчи
+def rle_encode(file): 
+    encoding = '' 
+    prev_char = '' 
+    count = 1 
+    if not file: return '' 
+    
+    for index, line in enumerate(file):
+        for i in range(0, len(line)):
+            data = str(line)
 
-print ("Задайте число :")
-number = int(input())
-if number > 0:
-    list = []
-    fib0 = 0
-    fib1 = -1
-    fib2 = 1
 
-    list.append(fib0)
-    list.append(fib1)
-    list.append(fib1)
-    list.append(fib2)
-    list.append(fib2)
+            for char in data:
+                if char != prev_char:  
+                    if prev_char: 
+                        encoding += str(count) + prev_char 
+                    count = 1 
+                    prev_char = char 
+                else: 
+                    count += 1 
+            else:  
+                encoding += str(count) + prev_char 
+                return encoding
 
-    def Number_fib(fib1, fib2):
-        for i in range(2, number):
-            fib = fib1 + fib2
-            fib1 = fib2
-            fib2 = fib
-            list.append(fib)
 
-    Number_fib(fib1, fib1)
-    Number_fib(fib2, fib2)
-    list.sort()
-    print(list)
+with open("task05.txt", "r", encoding='utf-8') as file:
+    encoded_val = rle_encode(file) 
+print(encoded_val)
 
-else:
-    print("Введите положительное число")
+
+def rle_decode(data): 
+    decode = '' 
+    count = '' 
+    for char in data: 
+        if char.isdigit():
+            count += char 
+        else: 
+            decode += char * int(count) 
+            count = '' 
+    return decode
+
+decoded_val = rle_decode(encoded_val) 
+print(decoded_val)
